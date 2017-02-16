@@ -29,7 +29,7 @@ var myObj = {}; // empty object.
 
   console.log(myObj3.address.pin);
   //document.getElementById('pin').innerHTML = myObj3.address.pin;
-  document.getElementsByClassName('pin')[0].innerHTML = myObj3.address.pin;
+  document.getElementsByClassName('x')[0].innerHTML = myObj3.address.pin;
   
   console.log(myObj3.branches[1]);
   document.getElementById('us').innerHTML = myObj3.branches[1];
