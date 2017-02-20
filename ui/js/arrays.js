@@ -60,3 +60,7 @@ var myNumbers = [2,3,5];
 for (var i = 0; i < myNumbers.length; i++) {
 	console.log("number of elemts and value ::", myNumbers[i]);
 };
+
+var obj = {
+	name: bujji
+}
