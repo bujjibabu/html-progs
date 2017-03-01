@@ -22,6 +22,7 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
   <script type="text/javascript">
   $(document).ready(function() {
+
     $('.heading-text').html('<h3>WELCOME JQUERY WORLD!</h3>');
     //loginin form functionality.
     $('.sign-in-btn').click(function(){
@@ -35,6 +36,21 @@
       //ajax call
       console.log(userObject);
     });
+
+    $('input').focus(function(){
+      console.log('focus');
+    });
+
+    $('input').blur(function() {
+      console.log('blur');
+      debugger;
+      if($('.user-name').val()) {
+        var username = $('.user-name').val();
+      } else {
+        alert('please enter user name');
+      }
+    });
+
   });
 
   window.onload = function() {
