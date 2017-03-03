@@ -19,9 +19,10 @@
   
   .animate-div {
     background: red;
-    position: absolute;
-    height: 100px;
     width: 100px;
+    padding: 20px;
+    border: 10px solid green;
+    margin:20px;
   }
   
   .btn-groups {
@@ -33,7 +34,12 @@
 
 <body class="col-xs-12">
   <div class="div1"></div>
-  <div class="animate-div"></div>
+  <div class="animate-div">
+    <h1>testing</h1>
+    <h1>testing</h1>
+    <h1>testing</h1>
+    <h1>testing</h1>
+  </div>
   <br/>
   <div class="btn-groups">
     <button class="btn btn-primary btn-fadein">fadein</button>
@@ -84,7 +90,13 @@
     });
     $('.btn-stop').click(function(){
       $('.animate-div').stop();
-    })
+    });
+
+    alert('height::' + $('.animate-div').height());
+    alert('innerHeight' + $('.animate-div').innerHeight());
+    alert('outerHeight' + $('.animate-div').outerHeight());
+    alert('outerHeight true' + $('.animate-div').outerHeight(true));
+
   });
   </script>
 </body>
