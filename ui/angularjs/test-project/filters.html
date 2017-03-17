@@ -14,23 +14,22 @@
 <body ng-controller="userCtrl">
   <div class="container">
     <div class="col-xs-12 user-table">
-       <form class="form-inline text-right">
+      <form class="form-inline text-right">
         <div class="form-group">
           <label>Search</label>
           <input type="text" ng-model="search" class="form-control" placeholder="search">
         </div>
       </form>
+      {{usersData | json}}
       <table class="table table-bordered table-hover table-striped">
         <thead>
           <tr>
-            <th ng-click="predect = 'sno'; reverse = !reverse">S.No 
+            <th ng-click="predect = 'sno'; reverse = !reverse">S.No
               <!-- <span ng-show="predect == 'sno' && reverse==false" class="glyphicon glyphicon-chevron-up"></span>
               <span ng-show="predect == 'sno' && reverse==true" class="glyphicon glyphicon-chevron-down"></span> -->
-
               <span class="glyphicon {{(predect == 'sno' && reverse==false) && 'glyphicon-chevron-up' || 'glyphicon-chevron-down'}}"></span>
-
             </th>
-            <th ng-click="predect = 'fname'; reverse = !reverse">First Name 
+            <th ng-click="predect = 'fname'; reverse = !reverse">First Name
               <span class="glyphicon {{(predect == 'fname' && reverse==false) && 'glyphicon-chevron-up' || 'glyphicon-chevron-down'}}"></span>
             </th>
             <th ng-click="predect = 'lname'; reverse = !reverse">Last Name <span class="glyphicon glyphicon-chevron-up"></span></th>
@@ -39,7 +38,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="user in usersData | orderBy: predect : reverse | filter: search | limitTo: 2">
+          <tr ng-repeat="user in usersData | orderBy: predect : reverse | filter: search | limitTo: 100">
             <td ng-bind="user.sno"></td>
             <td ng-bind="user.fname"></td>
             <td ng-bind="user.lname"></td>
@@ -56,44 +55,30 @@
     <p ng-bind="myData | limitTo: nochars"></p>
     <span ng-click="nochars = myData.length" ng-bind="(nochars == myData.length) && 'Show Less' || 'show More'"></span>
   </div>
-
   <script type="text/javascript" src="jquery/jquery-3.1.1.js"></script>
   <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
   <script type="text/javascript" src="angularjs/angular.min.js"></script>
   <script type="text/javascript">
-  angular.module('adminApp', []).controller('userCtrl', function($scope) {
+  angular.module('adminApp', []).controller('userCtrl', function($scope, $http) {
 
     $scope.reverse = true;
     $scope.nochars = 200;
     $scope.myData = "Includes over 250 glyphs in font format from the Glyphicon Halflings set. Glyphicons Halflings are normally not available for free, but their creator has made them available for Bootstrap free of cost. As a thank you, we only ask that you include a link back to Glyphicons whenever possible. Includes over 250 glyphs in font format from the Glyphicon Halflings set. Glyphicons Halflings are normally not available for free, but their creator has made them available for Bootstrap free of cost. As a thank you, we only ask that you include a link back to Glyphicons whenever possible."
 
-    $scope.usersData = [{
-      sno: 1,
-      fname: 'Bujji',
-      lname: 'balaga',
-      age: 28
-    }, {
-      sno: 2,
-      fname: 'vamsi',
-      lname: 's',
-      age: 22
-    }, {
-      sno: 3,
-      fname: 'sumanth',
-      lname: 'a',
-      age: 25
-    }, {
-      sno: 4,
-      fname: 'mahesh',
-      lname: 'b',
-      age: 23
-    }, {
-      sno: 5,
-      fname: 'mahesh1',
-      lname: 'b',
-      age: 23
-    }];
+    var scb = function(data) {
+      console.log(data.data);
+      $scope.usersData = data.data;
+    };
+    var ecb = function(data) {
+      console.log(data);
+    };
+
+    $http({
+      url: 'usersdata.json',
+      method: "GET"
+    }).then(scb, ecb);
   });
   </script>
 </body>
+
 </html>
