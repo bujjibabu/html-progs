@@ -32,7 +32,8 @@
             <th ng-click="predect = 'fname'; reverse = !reverse">First Name
               <span class="glyphicon {{(predect == 'fname' && reverse==false) && 'glyphicon-chevron-up' || 'glyphicon-chevron-down'}}"></span>
             </th>
-            <th ng-click="predect = 'lname'; reverse = !reverse">Last Name <span class="glyphicon glyphicon-chevron-up"></span></th>
+            <th ng-click="predect = 'lname'; reverse = !reverse">Last Name
+            <span class="glyphicon glyphicon-chevron-up"></span></th>
             <th ng-click="predect = 'age'; reverse = !reverse">Age <span class="glyphicon glyphicon-chevron-up"></span></th>
             <th>view</th>
           </tr>
@@ -55,9 +56,9 @@
     <p ng-bind="myData | limitTo: nochars"></p>
     <span ng-click="nochars = myData.length" ng-bind="(nochars == myData.length) && 'Show Less' || 'show More'"></span>
   </div>
-  <script type="text/javascript" src="jquery/jquery-3.1.1.js"></script>
-  <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-  <script type="text/javascript" src="angularjs/angular.min.js"></script>
+  <script type="text/javascript" src="../LIBRARIES/jquery-3.1.1.js"></script>
+  <script type="text/javascript" src="../LIBRARIES/bootstrap-3.3/js/bootstrap.js"></script>
+  <script type="text/javascript" src="../LIBRARIES/angular.js"></script>
   <script type="text/javascript">
   angular.module('adminApp', []).controller('userCtrl', function($scope, $http) {
 
@@ -77,6 +78,27 @@
       url: 'usersdata.json',
       method: "GET"
     }).then(scb, ecb);
+
+    $scope.usersdata=[
+    {
+  "sno": 1,
+  "fname": "Bujji",
+  "lname": "balaga",
+  "age": 28
+},
+{
+  "sno": 2,
+  "fname": "babu",
+  "lname": "xyz",
+  "age": 29
+},
+{
+  "sno": 3,
+  "fname": "user3",
+  "lname": "abc",
+  "age": 30
+}]
+
   });
   </script>
 </body>
